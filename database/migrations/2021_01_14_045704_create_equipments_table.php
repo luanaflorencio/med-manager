@@ -17,6 +17,7 @@ class CreateEquipmentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('identificationnumber');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
