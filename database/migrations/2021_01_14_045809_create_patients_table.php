@@ -15,8 +15,8 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('birth');
+            $table->text('name');
+            $table->string('birth');
             $table->string('weight');
             $table->string('height');
             $table->integer('user_id');

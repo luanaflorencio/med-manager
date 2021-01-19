@@ -14,5 +14,6 @@ class Patient extends Model
         'birth',
         'weight',
         'height',
+        'user_id',
     ];
 }
