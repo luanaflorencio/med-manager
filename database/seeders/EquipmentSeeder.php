@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Equipment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class EquipmentSeeder extends Seeder
@@ -14,10 +15,11 @@ class EquipmentSeeder extends Seeder
      */
     public function run()
     {
-        Equipment::create([
-            'name' => 'Estetoscópio',
-            'identificationnumber' => 179,
-            'user_id' => 1
-        ]);
+        $users = User::all();
+        foreach ($users as $user) {
+            Equipment::factory(3)->create([
+                'user_id' => $user->id,
+            ]);
+        }
     }
 }
