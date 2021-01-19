@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PatientSeeder extends Seeder
@@ -15,12 +16,11 @@ class PatientSeeder extends Seeder
     public function run()
     {
         //
-        Patient::create([
-            'name' => 'joão',
-            'birth' => '17/02/2014',
-            'weight' => '30,600',
-            'height' => '1,20',
-            'user_id' => 1
-        ]);
+        $users = User::all();
+        foreach ($users as $user) {
+            Patient::factory(2)->create([
+                'user_id' => $user->id,
+            ]);
+        }
     }
 }
