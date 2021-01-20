@@ -24,7 +24,7 @@ class EquipmentFactory extends Factory
         return [
             //
             'name' => $this->faker->word,
-            'identificationnumber' => $this->faker->randomDigit
+            'identificationnumber' => $this->faker->numerify('eqp-#####')
         ];
     }
 }
