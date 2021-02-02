@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\DController;
+use App\Http\Controllers\EquipmentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', [DController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
+
+Route::post('/equipment/unavailable', [EquipmentController::class, 'store']);
 
 require __DIR__ . '/auth.php';
