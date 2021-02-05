@@ -11,7 +11,11 @@
     Adicionar</div>
 @foreach($equipment->sortBy('name') as $item)
 <div class="p-3 border">
-    {{ $item->name }} ({{ $item->identificationnumber }}}
+    <div class="px-2 pb-2 border-b text-center">{{ $item->name }} ({{ $item->identificationnumber }}}</div>
+    <div class="grid grid-cols-2 text-center">
+      <a class="bg-green-100 hover:bg-green-200" href="">Editar</a>
+      <a class="bg-red-200 hover:bg-red-300" href="{{ route('del-equipment', $item->id)}}">Excluir</a>
+    </div>
 </div>
 @endforeach
 </div>

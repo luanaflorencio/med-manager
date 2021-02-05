@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\DController;
 use App\Http\Controllers\EquipmentController;
+use App\Models\Equipment;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,5 +23,6 @@ Route::get('/', function () {
 Route::get('/dashboard', [DController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 Route::post('/equipment/unavailable', [EquipmentController::class, 'store']);
+Route::get('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->name('del-equipment');
 
 require __DIR__ . '/auth.php';
