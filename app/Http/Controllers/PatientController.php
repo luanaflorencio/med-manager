@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -36,6 +37,14 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         //
+        Patient::create([
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'user_id' => Auth::id()
+        ]);
+        return redirect('dashboard');
     }
 
     /**

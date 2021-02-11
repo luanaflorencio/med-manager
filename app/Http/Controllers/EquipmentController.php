@@ -89,6 +89,6 @@ class EquipmentController extends Controller
     {
         //
         Equipment::findOrFail($id)->delete();
-        return redirect('dashboard')->with('msg', 'Excluído!');
+        return redirect('dashboard');
     }
 }

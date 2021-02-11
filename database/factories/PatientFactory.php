@@ -26,7 +26,7 @@ class PatientFactory extends Factory
             'name' => $this->faker->word,
             'birth' => $this->faker->date('Y_m_d'),
             'weight' => $this->faker->numberBetween('0, 600'),
-            'height' => $this->faker->numberBetween('0, 300')
+            'height' => 1.50
         ];
     }
 }

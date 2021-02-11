@@ -17,8 +17,8 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->text('name');
             $table->date('birth');
-            $table->integer('weight');
-            $table->integer('height');
+            $table->double('weight', 6, 3);
+            $table->double('height', 3, 2);
             $table->integer('user_id');
             $table->timestamps();
         });
