@@ -28,6 +28,8 @@ Route::post('/equipment/unavailable', [EquipmentController::class, 'store']);
 
 Route::post('patient/new', [PatientController::class, 'store']);
 
-Route::get('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->name('del-equipment');
+Route::get('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->name('del-equipment')->middleware('auth');
+
+Route::get('/patient/delete/{id}', [PatientController::class, 'destroy'])->name('del-patient')->middleware('auth');
 
 require __DIR__ . '/auth.php';

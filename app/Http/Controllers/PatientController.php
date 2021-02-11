@@ -90,5 +90,7 @@ class PatientController extends Controller
     public function destroy($id)
     {
         //
+        Patient::findOrFail($id)->delete();
+        return redirect('dashboard');
     }
 }
