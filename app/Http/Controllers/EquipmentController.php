@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class EquipmentController extends Controller
 {
+    public function list()
+    {
+        return auth()->user()->equipments;
+    }
     /**
      * Display a listing of the resource.
      *
