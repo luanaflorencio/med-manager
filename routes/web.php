@@ -17,6 +17,7 @@ use App\Http\Controllers\EquipmentController;
 use App\Models\Equipment;
 use App\Http\Controllers\PatientController;
 use App\Models\Patient;
+use App\Http\Controllers\SPAController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,5 +32,7 @@ Route::post('patient/new', [PatientController::class, 'store']);
 Route::get('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->name('del-equipment')->middleware('auth');
 
 Route::get('/patient/delete/{id}', [PatientController::class, 'destroy'])->name('del-patient')->middleware('auth');
+
+Route::get('/spa', [SPAController::class, 'home']);
 
 require __DIR__ . '/auth.php';

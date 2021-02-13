@@ -3795,6 +3795,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+__webpack_require__(/*! ./spa */ "./resources/js/spa.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -3825,6 +3827,68 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/spa.js":
+/*!*****************************!*\
+  !*** ./resources/js/spa.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+window.app = function () {
+  return {
+    'is_logged': false,
+    'token': '',
+    'user': {},
+    'equipment': [],
+    login: function login(event) {
+      var _this = this;
+
+      if (event && event.detail && event.detail.token) {
+        this.token = event.detail.token;
+        axios.post("/api/auth/me?token=".concat(this.token), {}).then(function (response) {
+          _this.user = response.data;
+          _this.is_logged = true;
+
+          _this.loadEquipment();
+        });
+      }
+    },
+    loadEquipment: function loadEquipment() {
+      var _this2 = this;
+
+      axios.get("/api/equipment?token=".concat(this.token)).then(function (response) {
+        _this2.equipment = response.data;
+      });
+    }
+  };
+};
+
+window.loginForm = function (LoginUrl) {
+  return {
+    'email': 'luana@gmail.com',
+    'pw': 'luanaluana',
+    login: function login() {
+      axios.post(LoginUrl, {
+        'email': this.email,
+        'password': this.pw
+      }).then(function (response) {
+        console.log(response.data);
+        dispatchEvent(new CustomEvent('set-token', {
+          detail: {
+            token: response.data.access_token
+          }
+        }));
+      })["catch"](function (err_res) {
+        console.error(err_res);
+      });
+    }
+  };
+};
 
 /***/ }),
 

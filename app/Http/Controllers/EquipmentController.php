@@ -10,7 +10,7 @@ class EquipmentController extends Controller
 {
     public function list()
     {
-        return auth()->user()->equipments;
+        return auth()->user()->equipment;
     }
     /**
      * Display a listing of the resource.
