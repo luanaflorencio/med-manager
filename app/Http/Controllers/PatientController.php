@@ -67,6 +67,8 @@ class PatientController extends Controller
     public function edit($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        return view('edit-pat', compact('patient'));
     }
 
     /**
@@ -79,6 +81,13 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Patient::findOrFail($id)->update([
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'weight' => $request->weight,
+            'height' => $request->height,
+        ]);
+        return redirect()->to('/dashboard')->with('update', 'Dados do paciente editado!');
     }
 
     /**

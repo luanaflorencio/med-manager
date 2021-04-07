@@ -33,6 +33,14 @@ Route::get('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->n
 
 Route::get('/patient/delete/{id}', [PatientController::class, 'destroy'])->name('del-patient')->middleware('auth');
 
+Route::get('/equipment/edit/{id}', [EquipmentController::class, 'edit'])->name('edit-equip');
+
+Route::post('/equipment/update/{id}', [EquipmentController::class, 'update']);
+
+Route::get('/patient/edit/{$id}', [PatientController::class, 'edit']);
+
+Route::post('/patient/update/{$id}', [PatientController::class, 'update']);
+
 Route::get('/spa', [SPAController::class, 'home']);
 
 require __DIR__ . '/auth.php';

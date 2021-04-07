@@ -1,23 +1,7 @@
 <div x-data="{ add_modal: false }">
-    <strong>Equipamentos médicos</strong>
 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
       
-</div>
-
-<div class="grid grid-cols-2">
-   
-    <div class="p-3 m-0.5 border rounded-lg bg-blue-100 hover:bg-blue-200 cursor-pointer"  @click="add_modal = true">
-    Adicionar</div>
-@foreach($equipment->sortBy('name') as $item)
-<div class="p-3 border">
-    <div class="px-2 pb-2 border-b text-center"> {{ $item->id }} {{ $item->name }} ({{ $item->identificationnumber }}}</div>
-    <div class="grid grid-cols-2 text-center">
-      <a class="bg-green-100 hover:bg-green-200" href="{{ url('equipment/edit/' .$item->id )}}">Editar</a>
-      <a class="bg-red-200 hover:bg-red-300" href="{{ route('del-equipment', $item->id)}}">Excluir</a>
-    </div>
-</div>
-@endforeach
 </div>
 </div>
 <div class="fixed z-10 inset-0 overflow-y-auto" style="display:none" x-show="add_modal">
@@ -50,24 +34,24 @@
       -->
       <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
           <div class="p-3">
-              <h1>Equipamento sendo utilizado</h1>
-              <form action="{{ action([\App\Http\Controllers\EquipmentController::class, 'store'])}}" method="POST">
+              <h1>Dados do equipamento sendo utilizado</h1>
+              <form action="{{ url('equipment/update' .$equipment->id)}}" method="POST">
                 @csrf 
 
                 <div>
                     <x-label for="name" :value="__('Nome')" />
     
-                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" value="{{ $equipment->name}}" required autofocus />
                 </div>
                 <div>
                     <x-label for="identificationnumber" :value="__('Número de identificação')" />
     
-                    <x-input id="identificationnumber" class="block mt-1 w-full" type="text" name="identificationnumber" :value="old('identificationnumber')" required autofocus />
+                    <x-input id="identificationnumber" class="block mt-1 w-full" type="text" name="identificationnumber" :value="old('identificationnumber')" value="{{ $equipment->identificationnumber }}" required autofocus />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
                     <x-button class="ml-4">
-                        {{ __('Enviar') }}
+                        {{ __('Editar') }}
                     </x-button>
                 </div>
               </form>

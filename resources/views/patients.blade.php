@@ -12,9 +12,9 @@
         Adicionar</div>
     @foreach($patient->sortBy('name') as $item)
     <div class="p-3 border">
-        <div class="px-2 pb-2 border-b text-center">{{ $item->name }} Idade:{{ $item->birth }} Peso:{{ $item->weight }} Altura:{{ $item->height }}</div>
+        <div class="px-2 pb-2 border-b text-center"> {{ $item->id }} {{ $item->name }} Idade:{{ $item->birth }} Peso:{{ $item->weight }} Altura:{{ $item->height }}</div>
         <div class="grid grid-cols-2 text-center cursor-pointer">
-          <a class="bg-green-100 hover:bg-green-200">Editar</a>
+          <a class="bg-green-100 hover:bg-green-200" href="{{ url('/patient/edit/' .$item->id)}}">Editar</a>
           <a class="bg-red-200 hover:bg-red-300" href="{{ route('del-patient', $item->id)}}">Excluir</a>
         </div>
     </div>

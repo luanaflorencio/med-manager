@@ -7,6 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto grid grid-cols-2 sm:px-6 lg:px-8">
+
+            @if(\Session::has('update'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('update') !!}</li>
+                    </ul>
+                </div>
+        @endif
+        
                     <div class="mr-2">
                         @include('equipments')
                     </div>

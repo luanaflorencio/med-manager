@@ -69,6 +69,8 @@ class EquipmentController extends Controller
     public function edit($id)
     {
         //
+        $equipment = Equipment::findOrFail($id);
+        return view('edit-equip', compact('equipment'));
     }
 
     /**
@@ -81,6 +83,11 @@ class EquipmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Equipment::findOrFail($id)->update([
+            'name' => $request->name,
+            'identificationnumber' => $request->identificationnumber,
+        ]);
+        return redirect()->to('/dashboard')->with('update', 'Equipamento editada!');
     }
 
     /**
